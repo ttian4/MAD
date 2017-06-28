@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/list_item_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="10dp"
+        />
+    <Button
+        android:id="@+id/list_item_upgrade"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="unlock"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/holo_blue_light"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        />
+
+    <TextView
+        android:id="@+id/list_item_price"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="1000 G"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/list_item_upgrade"
+        />
+    <ProgressBar
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/list_item_img"
+        android:layout_toLeftOf="@id/list_item_price"
+        />
+</RelativeLayout>

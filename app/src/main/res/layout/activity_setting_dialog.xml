@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_light"
+    tools:context="edu.gsu.httpscs.finalproject.dialog.SettingDialog">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:text="quit?"
+        android:textSize="30sp"
+        android:fontFamily="fantasy"
+        android:gravity="center"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/dialog_yes"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:fontFamily="fantasy"
+            android:background="@android:color/black"
+            android:text="yes"
+            />
+        <View
+            android:layout_width="15dp"
+            android:layout_height="60dp"></View>
+        <Button
+            android:id="@+id/dialog_no"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:fontFamily="fantasy"
+            android:background="@android:color/black"
+            android:text="no"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
