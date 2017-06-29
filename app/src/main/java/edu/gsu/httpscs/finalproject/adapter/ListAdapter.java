@@ -1,6 +1,7 @@
 package edu.gsu.httpscs.finalproject.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import edu.gsu.httpscs.finalproject.R;
 /**
@@ -58,7 +60,18 @@ public class ListAdapter extends BaseAdapter {
 
         holder.priceTv.setText(price[position]);
 //        holder.imgBt.setImageResource(imgs[position]);       haven't find pictures later edit
-        return convertView;
+        Button bt = (Button) convertView.findViewById(R.id.list_item_unlock);
+        final View finalConvertView = convertView;
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button bt = (Button) finalConvertView.findViewById(R.id.list_item_unlock);
+                bt.setText("upgrade");
+                ProgressBar pb = (ProgressBar) finalConvertView.findViewById(R.id.list_item_progressBar);
+                pb.setVisibility(View.VISIBLE);
+            }
+        });
+        return finalConvertView;
     }
 
 }

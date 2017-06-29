@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <ImageButton
         android:id="@+id/list_item_img"
         android:layout_width="60dp"
@@ -15,7 +16,7 @@
         android:padding="10dp"
         />
     <Button
-        android:id="@+id/list_item_upgrade"
+        android:id="@+id/list_item_unlock"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:text="unlock"
@@ -33,11 +34,16 @@
         android:layout_height="60dp"
         android:text="1000 G"
         android:gravity="center"
-        android:layout_toLeftOf="@id/list_item_upgrade"
+        android:layout_toLeftOf="@id/list_item_unlock"
         />
     <ProgressBar
+        android:id="@+id/list_item_progressBar"
         android:layout_width="100dp"
         android:layout_height="60dp"
+        android:visibility="invisible"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_toRightOf="@id/list_item_img"
         android:layout_toLeftOf="@id/list_item_price"
         />

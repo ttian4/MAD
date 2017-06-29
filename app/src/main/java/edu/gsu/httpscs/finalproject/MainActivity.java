@@ -10,9 +10,13 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+    private View view;
+
     @OnClick(R.id.main_activity_start)
     public void start(View v){
         startActivity(new Intent(MainActivity.this,GameActivity.class));
+        System.exit(0);
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
