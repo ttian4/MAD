@@ -8,14 +8,16 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import edu.gsu.httpscs.finalproject.dialog.HeroSelectionDialog;
+import edu.gsu.httpscs.finalproject.dialog.SettingDialog;
 
 public class MainActivity extends AppCompatActivity {
     private View view;
 
     @OnClick(R.id.main_activity_start)
     public void start(View v){
-        startActivity(new Intent(MainActivity.this,GameActivity.class));
-        System.exit(0);
+        HeroSelectionDialog heroSelectionDialog = new HeroSelectionDialog(MainActivity.this);
+        heroSelectionDialog.show();
 
     }
     @Override

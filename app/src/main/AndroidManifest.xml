@@ -20,7 +20,8 @@
         <activity android:name=".StartActivity" />
         <activity android:name=".dialog.SettingDialog" />
         <activity android:name=".CharacterActivity" />
-        <activity android:name=".UpgradeActivity"></activity>
+        <activity android:name=".UpgradeActivity" />
+        <activity android:name=".dialog.HeroSelectionDialog"></activity>
     </application>
 
 </manifest>

@@ -32,19 +32,28 @@
         android:id="@+id/list_item_price"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:text="1000 G"
+        android:text="1000"
         android:gravity="center"
         android:layout_toLeftOf="@id/list_item_unlock"
         />
+    <TextView
+        android:id="@+id/list_item_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G"
+        android:gravity="center"
+        android:layout_alignBaseline="@+id/list_item_price"
+        android:layout_alignBottom="@+id/list_item_price"
+        android:layout_toStartOf="@+id/list_item_unlock" />
+
     <ProgressBar
         android:id="@+id/list_item_progressBar"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:visibility="invisible"
         style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/list_item_img"
         android:layout_toLeftOf="@id/list_item_price"
-        />
+        android:layout_toRightOf="@id/list_item_img"
+        android:visibility="invisible" />
 </RelativeLayout>

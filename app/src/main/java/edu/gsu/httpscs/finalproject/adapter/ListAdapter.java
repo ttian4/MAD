@@ -22,6 +22,7 @@ public class ListAdapter extends BaseAdapter {
     String[] price= {};
     Context context;
     LayoutInflater inflater;
+    int money = 1000;
 
     public ListAdapter(Context context, int[] imgs, String[] price) {
         this.context = context;
@@ -41,6 +42,11 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return position;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 
     @Override
