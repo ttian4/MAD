@@ -16,20 +16,29 @@ import edu.gsu.httpscs.finalproject.R;
 
 public class SettingDialog extends Dialog{
 
+    private final CustomDialogListener listener;
+
+    public interface CustomDialogListener{
+        public void onOKLicked(String msg);
+    }
     Activity activity;
 
     @OnClick(R.id.dialog_yes)
     public void yes(View view){
+        listener.onOKLicked("yes");
         activity.finish();
     }
     @OnClick(R.id.dialog_no)
     public void no(View view){
+        listener.onOKLicked("no");
         dismiss();
+        System.exit(0);
     }
 
-    public SettingDialog(Activity activity) {
+    public SettingDialog(Activity activity,CustomDialogListener listener) {
         super(activity);
         this.activity = activity;
+        this.listener = listener;
     }
 
     @Override

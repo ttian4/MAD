@@ -1,8 +1,11 @@
 package edu.gsu.httpscs.finalproject;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -36,9 +39,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.gsu.httpscs.finalproject.Fragment.HeroFragment;
 import edu.gsu.httpscs.finalproject.Fragment.MissionFragment;
-import edu.gsu.httpscs.finalproject.adapter.ListAdapter;
 import edu.gsu.httpscs.finalproject.adapter.ViewFragmentStateAdapter;
 import edu.gsu.httpscs.finalproject.dialog.SettingDialog;
+import edu.gsu.httpscs.finalproject.service.MusicService;
 import edu.gsu.httpscs.finalproject.util.UtilLog;
 
 public class GameActivity extends BaseActivity implements ViewPager.OnTouchListener {
@@ -49,15 +52,25 @@ public class GameActivity extends BaseActivity implements ViewPager.OnTouchListe
     ViewPager viewPager;
     @BindView(R.id.game_activity_bg)
     ImageView imageView;
+    @BindView(R.id.main_frame_monster)
+    ImageView character;
     private int sumX;
     private int sumY;
 
     ListView listView;
     private GestureDetector gestrueDetector;
+    private Intent startIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Intent intent = new Intent(StartActivity.ACTION_CLOSE);
+//        sendBroadcast(intent);
+
+        startIntent = new Intent(this,MusicService.class);
+        startIntent.putExtra("Start",false);
+        startService(startIntent);
+        registerBrocast();
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
         int source = getIntent().getIntExtra("imageID",0);
@@ -77,10 +90,39 @@ public class GameActivity extends BaseActivity implements ViewPager.OnTouchListe
         imageView.setClickable(true);
         imageView.setLongClickable(true);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent stopIntent = new Intent(this,MusicService.class);
+        stopIntent.putExtra("Start",false);
+        stopService(stopIntent);
+//        registerBrocast();
+    }
+
+    private void registerBrocast() {
+        MusicReceiver receiver = new MusicReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(MusicService.PLAYING);
+        registerReceiver(receiver, filter);
+    }
+
     @Override
     public void onBackPressed() {
-        SettingDialog dialog = new SettingDialog(GameActivity.this);
+        final SettingDialog dialog = new SettingDialog(this, new SettingDialog.CustomDialogListener() {
+            @Override
+            public void onOKLicked(String msg) {
+                if(msg.equals("yes")){
+                    Intent stopIntent = new Intent(getApplicationContext(),MusicService.class);
+                    stopIntent.putExtra("Start",false);
+                    stopService(stopIntent);
+                    System.exit(0);
+
+                }
+            }
+        });
         dialog.show();
+
     }
 
     @Override
@@ -90,13 +132,11 @@ public class GameActivity extends BaseActivity implements ViewPager.OnTouchListe
     private class simpleGestureListener extends GestureDetector.SimpleOnGestureListener{
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            shortToast("onSingleTapUp");
             return super.onSingleTapUp(e);
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            shortToast("onLongPress");
             super.onLongPress(e);
         }
 
@@ -111,59 +151,32 @@ public class GameActivity extends BaseActivity implements ViewPager.OnTouchListe
         }
 
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            UtilLog.d("Gesture","onFling");
-            if(sumX<0){
-                if(Math.abs(sumX)>200) {
-                    shortToast("You scroll from left to right");
-                }
-            }
-            if(sumX>0){
-                if(Math.abs(sumX)>200) {
-                    shortToast("You scroll from right to left");
-                }
-            }
-            if(sumY<0){
-                if(Math.abs(sumY)>200) {
-                    shortToast("You scroll from top to bottom");
-                }
-            }
-            if(sumY>0){
-                if(Math.abs(sumY)>200) {
-                    shortToast("You scroll from bottom to top");
-                }
-            }
-            return super.onFling(e1, e2, velocityX, velocityY);
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-            shortToast("onShowPress");
-            super.onShowPress(e);
-        }
-
-        @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
-            shortToast("onSingleTapConfirmed");
+            showToast("You have attacked the monster - 1hp");
+            ObjectAnimator animatorX = ObjectAnimator.ofFloat(character,"scaleX",0,2,1);
+            ObjectAnimator animatorY = ObjectAnimator.ofFloat(character,"scaleY",0,2,1);
+            animatorX.setDuration(500);
+            animatorY.setDuration(500);
+            animatorX.start();
+            animatorY.start();
             return super.onSingleTapConfirmed(e);
         }
 
         @Override
         public boolean onDown(MotionEvent e) {
-            shortToast("onDown");
             return super.onDown(e);
         }
-
+    }
+    public class MusicReceiver extends BroadcastReceiver {
         @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            shortToast("onDoubleTap");
-            return super.onDoubleTap(e);
-        }
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals(MusicService.PLAYING)) {
+                if(intent.getBooleanExtra("Start",true)){
+                    Intent play = new Intent(context, MusicService.class);
+                    context.startService(play);
+                }
 
-        @Override
-        public boolean onDoubleTapEvent(MotionEvent e) {
-            shortToast("onDoubleTapEvent");
-            return super.onDoubleTapEvent(e);
         }
     }
-};
+}}

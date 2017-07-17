@@ -29,7 +29,7 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="sun ce" />
+            android:text="Bruce" />
         <View
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -41,7 +41,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="ma yun lu" />
+            android:text="Selena" />
 
         <View
             android:layout_width="0dp"
@@ -54,7 +54,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="xia hou dun" />
+            android:text="Jayce" />
     </LinearLayout>
 
     <LinearLayout

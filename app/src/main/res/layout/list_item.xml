@@ -53,7 +53,13 @@
         android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@id/list_item_price"
         android:layout_toRightOf="@id/list_item_img"
         android:visibility="invisible" />
+    <TextView
+        android:id="@+id/list_item_min"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_toRightOf="@id/list_item_progressBar"
+        />
 </RelativeLayout>
