@@ -13,10 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import butterknife.ButterKnife;
-import edu.gsu.httpscs.finalproject.GameActivity;
-import edu.gsu.httpscs.finalproject.GameActivity_ViewBinding;
 import edu.gsu.httpscs.finalproject.R;
 
 /**
